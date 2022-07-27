@@ -1,4 +1,8 @@
 Django==4.0.6
+django-extensions
+ipython
+
+# Flake8
 flake8==4.0.1
 flake8-builtins==1.5.3
 flake8-print==5.0.0
