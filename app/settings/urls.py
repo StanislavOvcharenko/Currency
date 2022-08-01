@@ -1,9 +1,9 @@
 from django.contrib import admin
 from django.urls import path
 
-from currency.views import hello_world
+from currency.views import contact_us_list
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('hello/', hello_world)
+    path('contactus/', contact_us_list)
 ]
