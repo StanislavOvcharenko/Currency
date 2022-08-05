@@ -1,12 +1,24 @@
-# from django.shortcuts import render
-from django.http import HttpResponse
-from currency.models import ContactUs
+from django.shortcuts import render
+# from django.http import HttpResponse
+from currency.models import ContactUs, Rate
+
+
+def contact_us_table(request):
+    context = {
+        "contact_us_list": ContactUs.objects.all(),
+    }
+    return render(request, 'contactus_table.html', context=context)
 
 
 def contact_us_list(request):
-    contact_list = []
-    for contact in ContactUs.objects.all():
-        contact_string = f'id : {contact.id}, email_from : {contact.email_from}, email_to : {contact.email_to}, ' \
-                         f'subject : {contact.subject}, message : {contact.message}, data : {contact.create} <br>'
-        contact_list.append(contact_string)
-    return HttpResponse(contact_list)
+    context = {
+        "contact_us_list": ContactUs.objects.all(),
+    }
+    return render(request, 'base.html', context=context)
+
+
+def rate_table(request):
+    context = {
+        "rate_list": Rate.objects.all()
+    }
+    return render(request, 'rate_table.html', context=context)

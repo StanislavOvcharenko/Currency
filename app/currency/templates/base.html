@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+{% for contact in contact_us_list %}
+    <p>ID: {{ contact.id }}, Email from: {{ contact.email_from }}, Email to: {{ contact.email_to }},
+    subject: {{ contact.subject }}, message: {{ contact.message }}, create: {{ contact.create }}</p>
+{% endfor %}
+</body>
+</html>
