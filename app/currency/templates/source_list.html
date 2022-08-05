@@ -1,0 +1,12 @@
+{% extends 'base_html.html' %}
+
+{% block main_content %}
+    <div>Currency Exchange Project</div>
+
+<div>
+ {% for source in source_list %}
+<p>Source url: {{ source.source_url }} , Name: {{ source.name }}</p>
+{% endfor %}
+</div>
+{% endblock main_content %}
+

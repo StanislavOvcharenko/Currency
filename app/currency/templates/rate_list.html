@@ -1,0 +1,13 @@
+{% extends 'base_html.html' %}
+
+{% block main_content %}
+    <div><a href="/rate/create/"> Create new rate </a></div>
+    {% for rate in rate_list %}
+
+        <div>ID: {{ rate.id }}, Sale: {{ rate.sale }}, Buy: {{ rate.buy }}
+        <a href="/rate/details/{{ rate.id }}"> View details </a>
+        <a href="/rate/update/{{ rate.id }}/"> Edit </a>
+        <a href="/rate/delete/{{ rate.id }}"> Delete </a>
+        </div>
+    {% endfor %}
+{% endblock main_content %}
