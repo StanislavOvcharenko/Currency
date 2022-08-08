@@ -1,0 +1,13 @@
+{% extends 'base_html.html' %}
+
+{% block main_content %}
+
+    Rate Delete
+
+    <div>Delete object with id {{ instance.id }}</div>
+
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Send</button>
+    </form>
+{% endblock main_content %}
