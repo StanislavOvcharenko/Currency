@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404
 # from django.http import HttpResponse, Http404
 from django.http import HttpResponseRedirect
 from currency.models import ContactUs, Rate, Source
-from currency.forms import RateForm
+from currency.forms import RateForm, SourceForm
 
 
 def index(request):
@@ -86,3 +86,47 @@ def source(request):
         "source_list": Source.objects.all()
     }
     return render(request, 'source_list.html', context=context)
+
+
+def source_create(request):
+    if request.method == 'POST':
+        source_form = SourceForm(request.POST)
+        if source_form.is_valid():
+            source_form.save()
+            return HttpResponseRedirect('/source/list/')
+    elif request.method == 'GET':
+        source_form = SourceForm()
+
+    context = {'source_form': source_form}
+    return render(request, 'source_create.html', context=context)
+
+
+def source_update(request, source_id):
+
+    source_instance = get_object_or_404(Source, id=source_id)
+
+    if request.method == 'POST':
+        source_form = SourceForm(request.POST, instance=source_instance)
+        if source_form.is_valid():
+            source_form.save()
+            return HttpResponseRedirect('/source/list/')
+    elif request.method == 'GET':
+        source_form = SourceForm(instance=source_instance)
+
+    context = {'source_form': source_form}
+    return render(request, 'source_update.html', context=context)
+
+
+def source_details(request, source_id):
+    source_instance = get_object_or_404(Source, id=source_id)
+    context = {'source_instance': source_instance}
+    return render(request, 'source_details.html', context=context)
+
+
+def source_delete(request, source_id):
+    source_instance = get_object_or_404(Source, id=source_id)
+    context = {'instance': source_instance}
+    if request.method == 'POST':
+        source_instance.delete()
+        return HttpResponseRedirect('/source/list/')
+    return render(request, 'source_delete.html', context=context)
