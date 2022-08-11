@@ -4,7 +4,7 @@
    Source Create
     <form method="post">
         {% csrf_token %}
-        {{ source_form.as_p }}
+        {{ form.as_p }}
         <button type="submit">Send</button>
     </form>
 {% endblock main_content %}
