@@ -3,13 +3,13 @@
 {% block main_content %}
 
     <div>Currency Exchange Project</div>
-    <div><a href="/source/create/"> Create new source </a></div>
+    <div><a href="{% url 'currency:source_create' %}"> Create new source </a></div>
 
         {% for source in source_list %}
             <div>Source ID: {{ source.id }} , Source url: {{ source.source_url }} , Name: {{ source.name }}
-            <a href="/source/details/{{ source.id }}/"> View details </a>
-            <a href="/source/update/{{ source.id }}/"> Edit </a>
-            <a href="/source/delete/{{ source.id }}/"> Delete</a>
+            <a href="{% url 'currency:source_details' source.id %}"> View details </a>
+            <a href="{% url 'currency:source_update' source.id %}"> Edit </a>
+            <a href="{% url 'currency:source_delete' source.id %}"> Delete</a>
             </div>
         {% endfor %}
 {% endblock main_content %}

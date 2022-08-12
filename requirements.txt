@@ -2,6 +2,9 @@ Django==4.0.6
 django-extensions
 ipython
 
+# dev
+django-debug-toolbar==3.5.0
+
 # Flake8
 flake8==4.0.1
 flake8-builtins==1.5.3

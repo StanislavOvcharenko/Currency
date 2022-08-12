@@ -2,10 +2,12 @@
 
 {% block main_content %}
     <div>Currency Exchange Project</div>
+    <div>Rate count : {{ rate_count }}</div>
+    <div>Source count : {{ source_count }}</div>
 
 <div>
-    Viev List Rate: <a href="/rate/list/"> Click Here</a>
-    <p>Viev Table Rate: <a href="/rate/table/"> Click Here</a></p>
-    <p>Viev Source List: <a href="/source/list/"> Click Here</a></p>
+    View List Rate: <a href="{% url 'currency:rate_list' %}"> Click Here</a>
+    <p>View Table Rate: <a href="/rate/table/"> Click Here</a></p>
+    <p>View Source List: <a href="{% url 'currency:source_list' %}"> Click Here</a></p>
 </div>
 {% endblock main_content %}
