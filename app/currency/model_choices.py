@@ -13,7 +13,6 @@ from django.db import models
 # )
 
 
-
 class CurrencyType(models.TextChoices):
     CURRENCY_TYPE_UAH = 'UAH', 'Hryvna'
     CURRENCY_TYPE_USD = 'USD', 'Dollar'
