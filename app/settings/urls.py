@@ -9,4 +9,5 @@ urlpatterns = [
     path('__debug__/', include('debug_toolbar.urls')),
     path('currency/', include('currency.urls')),
 
+
 ]
