@@ -12,6 +12,8 @@ from django.db import models
 #     (CURRENCY_TYPE_EUR, 'Euro')
 # )
 
+
+
 class CurrencyType(models.TextChoices):
     CURRENCY_TYPE_UAH = 'UAH', 'Hryvna'
     CURRENCY_TYPE_USD = 'USD', 'Dollar'
