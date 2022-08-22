@@ -41,12 +41,15 @@ INSTALLED_APPS = [
 
     'django_extensions',
     "debug_toolbar",
+    'rangefilter',
+    'silk',
 
     'currency',
 ]
 
 MIDDLEWARE = [
     "debug_toolbar.middleware.DebugToolbarMiddleware",
+    'silk.middleware.SilkyMiddleware',
 
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
