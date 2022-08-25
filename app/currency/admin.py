@@ -1,5 +1,5 @@
 from django.contrib import admin
-from currency.models import Rate, Source, ContactUs
+from currency.models import Rate, Source, ContactUs, ResponseLog
 from rangefilter.filters import DateTimeRangeFilter
 
 
@@ -60,6 +60,16 @@ class ContactUsAdmin(admin.ModelAdmin):
         return False
 
 
+class ResponseLogAdmin(admin.ModelAdmin):
+    list_display = (
+        'response_time',
+        'request_method',
+        'query_params',
+        'ip',
+    )
+
+
 admin.site.register(Rate, RateAdmin)
 admin.site.register(Source, SourceAdmin)
 admin.site.register(ContactUs, ContactUsAdmin)
+admin.site.register(ResponseLog, ResponseLogAdmin)

@@ -23,3 +23,10 @@ class Rate(models.Model):
 class Source(models.Model):
     source_url = models.CharField(max_length=255)
     name = models.CharField(max_length=64)
+
+
+class ResponseLog(models.Model):
+    response_time = models.FloatField(max_length=10)
+    request_method = models.CharField(max_length=12)
+    query_params = models.CharField(max_length=20)
+    ip = models.CharField(max_length=100)
