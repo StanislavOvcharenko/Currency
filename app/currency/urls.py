@@ -18,6 +18,9 @@ urlpatterns = [
     path('source/details/<int:pk>/', views.SourceDetailsView.as_view(), name='source_details'),
     path('source/delete/<int:pk>/', views.SourceDeleteView.as_view(), name='source_delete'),
     path('contactus/create/', views.ContactUsCreateView.as_view(), name='contactus_create'),
+    path('my-profile/', views.UserProfileView.as_view(), name='my_profile'),
+    # path('change/password/', views.UserPasswordChangeView.as_view(), name='change_password'),
+    # path('change/password/done/', views.UserPasswordChangeDoneView.as_view(), name='change_password_done'),
 
 
 ]

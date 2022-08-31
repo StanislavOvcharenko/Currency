@@ -1,4 +1,6 @@
 # from django.shortcuts import render
+from django.contrib.auth import get_user_model
+from django.contrib.auth.mixins import LoginRequiredMixin
 from currency.models import ContactUs, Rate, Source
 from currency.forms import RateForm, SourceForm, ContactusForm
 from django.views import generic
@@ -48,7 +50,7 @@ class ContactUsCreateView(generic.CreateView):
         return response
 
 
-class RateListView(generic.ListView):
+class RateListView(LoginRequiredMixin, generic.ListView):
     queryset = Rate.objects.all()
     template_name = 'rate_list.html'
 
@@ -106,3 +108,21 @@ class SourceDeleteView(generic.DeleteView):
     queryset = Source.objects.all()
     template_name = 'source_delete.html'
     success_url = reverse_lazy('currency:source_list')
+
+
+class UserProfileView(LoginRequiredMixin, generic.UpdateView):
+    queryset = get_user_model().objects.all()
+    template_name = 'my_profile.html'
+    success_url = reverse_lazy('index')
+    fields = (
+        'first_name',
+        'last_name',
+    )
+
+    # def get_queryset(self):
+    #     queryset = super().get_queryset()
+    #     queryset = queryset.filter(id=self.request.user.id)
+    #     return queryset
+
+    def get_object(self, queryset=None):
+        return self.request.user
