@@ -1,0 +1,12 @@
+{% extends 'base_html.html' %}
+
+{% block main_content %}
+    <div><a href="{% url 'currency:contactus_create' %}"> Create new contactus </a></div>
+    {% for contactus in contactus_list %}
+
+        <div>
+            ID: {{ contactus.id }}, Email from: {{ contactus.email_from }}, Email to: {{ contactus.email_to }},
+            Subject: {{ contactus.subject }}, Message: {{ contactus.message }}
+        </div>
+    {% endfor %}
+{% endblock main_content %}

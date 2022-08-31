@@ -1,8 +1,10 @@
-from django.shortcuts import render
+# from django.shortcuts import render
 from currency.models import ContactUs, Rate, Source
-from currency.forms import RateForm, SourceForm
+from currency.forms import RateForm, SourceForm, ContactusForm
 from django.views import generic
 from django.urls import reverse_lazy
+from django.core.mail import send_mail
+from django.conf import settings
 
 
 class IndexView(generic.TemplateView):
@@ -15,25 +17,35 @@ class IndexView(generic.TemplateView):
         return context
 
 
-def contact_us_table(request):
-    context = {
-        "contact_us_list": ContactUs.objects.all(),
-    }
-    return render(request, 'contactus_table.html', context=context)
+class ContactUsView(generic.ListView):
+    queryset = ContactUs.objects.all()
+    template_name = 'contactus_list.html'
 
 
-def contact_us_list(request):
-    context = {
-        "contact_us_list": ContactUs.objects.all(),
-    }
-    return render(request, 'base.html', context=context)
+class ContactUsCreateView(generic.CreateView):
+    queryset = ContactUs.objects.all()
+    template_name = 'contactus_create.html'
+    form_class = ContactusForm
+    success_url = reverse_lazy('currency:contactus_list')
 
+    def form_valid(self, form):
+        response = super().form_valid(form)
 
-def rate_table(request):
-    context = {
-        "rate_list": Rate.objects.all()
-    }
-    return render(request, 'rate_table.html', context=context)
+        subject = 'Contact us Currency'
+        message = f'''subject from client {self.object.subject}
+        Email: {self.object.email_to}
+        Message : {self.object.message}
+        '''
+
+        send_mail(
+            subject,
+            message,
+            settings.EMAIL_HOST_USER,
+            [settings.EMAIL_HOST_USER],
+            fail_silently=False,
+        )
+
+        return response
 
 
 class RateListView(generic.ListView):

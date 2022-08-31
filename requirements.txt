@@ -2,7 +2,7 @@ Django==4.0.6
 django-extensions
 ipython
 django_admin_rangefilter
-django-silk
+
 
 # dev
 django-debug-toolbar==3.5.0
