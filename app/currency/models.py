@@ -10,19 +10,19 @@ class ContactUs(models.Model):
     create = models.DateTimeField(auto_now_add=True)
 
 
+class Source(models.Model):
+    source_url = models.CharField(max_length=255)
+    name = models.CharField(max_length=64)
+
+
 class Rate(models.Model):
     base_currency_type = models.CharField(max_length=3, choices=CurrencyType.choices,
                                           default=CurrencyType.CURRENCY_TYPE_UAH)
     currency_type = models.CharField(max_length=3, choices=CurrencyType.choices)
     sale = models.DecimalField(max_digits=10, decimal_places=4)
     buy = models.DecimalField(max_digits=10, decimal_places=4)
-    source = models.CharField(max_length=64)
+    source = models.ForeignKey('currency.Source', on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now_add=True)
-
-
-class Source(models.Model):
-    source_url = models.CharField(max_length=255)
-    name = models.CharField(max_length=64)
 
 
 class ResponseLog(models.Model):
