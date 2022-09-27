@@ -18,9 +18,9 @@ class Source(models.Model):
 class Rate(models.Model):
     base_currency_type = models.CharField(max_length=3, choices=CurrencyType.choices,
                                           default=CurrencyType.CURRENCY_TYPE_UAH)
-    currency_type = models.CharField(max_length=3, choices=CurrencyType.choices)
+    currency_type = models.CharField(max_length=3, choices=CurrencyType.choices, null=True)
     sale = models.DecimalField(max_digits=10, decimal_places=4)
-    buy = models.DecimalField(max_digits=10, decimal_places=4)
+    buy = models.DecimalField(max_digits=10, decimal_places=4, null=True)
     source = models.ForeignKey('currency.Source', on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now_add=True)
 
