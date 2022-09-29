@@ -5,8 +5,8 @@ from currency.models import ContactUs, Rate, Source
 from currency.forms import RateForm, SourceForm, ContactusForm
 from django.views import generic
 from django.urls import reverse_lazy
-from django.core.mail import send_mail
-from django.conf import settings
+
+from currency.tasks import send_contactus_mail
 
 
 class IndexView(generic.TemplateView):
@@ -33,25 +33,13 @@ class ContactUsCreateView(generic.CreateView):
     def form_valid(self, form):
         response = super().form_valid(form)
 
-        subject = 'Contact us Currency'
-        message = f'''subject from client {self.object.subject}
-        Email: {self.object.email_to}
-        Message : {self.object.message}
-        '''
-
-        send_mail(
-            subject,
-            message,
-            settings.EMAIL_HOST_USER,
-            [settings.EMAIL_HOST_USER],
-            fail_silently=False,
-        )
+        send_contactus_mail.delay(self.object.email_to, self.object.message)
 
         return response
 
 
 class RateListView(LoginRequiredMixin, generic.ListView):
-    queryset = Rate.objects.all()
+    queryset = Rate.objects.all().select_related('source')
     template_name = 'rate_list.html'
 
 
