@@ -3,12 +3,16 @@
 {% block main_content %}
 
     My Profile
+    {% if request.user.avatar %}
+        <img src="{{ request.user.avatar.url }}" height="40" width="40">
+    {% endif %}
 
     <a href="{% url 'password_change' %}">Change Password</a>
 
-    <form method="post">
+    <form method="post" enctype="multipart/form-data">
+    {% load crispy_forms_tags %}
         {% csrf_token %}
-        {{ form.as_p }}
+        {{ form|crispy }}
         <button type="submit">Send</button>
     </form>
 {% endblock main_content %}

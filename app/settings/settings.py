@@ -41,6 +41,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'crispy_forms',
+    "crispy_bootstrap5",
+
 
     'django_extensions',
     "debug_toolbar",
@@ -140,6 +143,9 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
 
+MEDIA_URL = 'media/'
+MEDIA_ROOT = BASE_DIR / '..' / 'static_content' / 'media'
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
@@ -186,3 +192,7 @@ CELERY_BEAT_SCHEDULE = {
         'schedule': crontab(minute='*/55')
     }
 }
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+
+CRISPY_TEMPLATE_PACK = "bootstrap5"

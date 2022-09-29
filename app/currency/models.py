@@ -10,9 +10,14 @@ class ContactUs(models.Model):
     create = models.DateTimeField(auto_now_add=True)
 
 
+def source_avatar(instance, filename):
+    return 'source_avatar/{0}/{1}'.format(instance.id, filename)
+
+
 class Source(models.Model):
     source_url = models.CharField(max_length=255)
     name = models.CharField(max_length=64)
+    bank_avatar = models.FileField(upload_to=source_avatar, default='bank.jpeg')
 
 
 class Rate(models.Model):

@@ -4,12 +4,36 @@
     <div>Currency Exchange Project</div>
     <div><a href="{% url 'currency:source_create' %}"> Create new source </a></div>
 
-        {% for source in source_list %}
-            <div>Source ID: {{ source.id }} , Source url: {{ source.source_url }} , Name: {{ source.name }}
-            <a href="{% url 'currency:source_details' source.id %}"> View details </a>
-            <a href="{% url 'currency:source_update' source.id %}"> Edit </a>
-            <a href="{% url 'currency:source_delete' source.id %}"> Delete</a>
-            </div>
-        {% endfor %}
+    <div class="container mt-3">
+    <h2>Source List</h2>
+    <table class="table">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Source url</th>
+        <th>Name</th>
+        <th>Actions</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    {% for source in source_list %}
+        <tr>
+            <td>{{ source.id }}</td>
+            <td>{{ source.source_url }}</td>
+            <td>{{ source.name }}
+                {% if source.bank_avatar.url %}
+            <img src="{{ source.bank_avatar.url }}" height="40" width="40">
+        {% endif %}
+            </td>
+
+            <td>
+                <a href="{% url 'currency:source_details' source.id %}"> View details </a>
+                <a href="{% url 'currency:source_update' source.id %}"> Edit </a>
+                <a href="{% url 'currency:source_delete' source.id %}"> Delete</a>
+            </td>
+        </tr>
+    {% endfor %}
+
 {% endblock main_content %}
 
