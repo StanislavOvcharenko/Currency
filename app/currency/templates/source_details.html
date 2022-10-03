@@ -4,7 +4,13 @@
 
     Source Details
 
+
     <div>ID: {{ source_instance.id }}</div>
     <div>Source : {{ object.source_url }}</div>
     <div>Name : {{ object.name }}</div>
+    <div>
+        {% if source.bank_avatar.url %}
+            <img src="{{ source.bank_avatar.url }}" height="40" width="40">
+        {% endif %}
+    </div>
 {% endblock main_content %}

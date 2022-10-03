@@ -3,10 +3,16 @@
 {% block main_content %}
 
     Source Update
+    <div>
+        {% if source.bank_avatar.url %}
+            <img src="{{ source.bank_avatar.url }}" height="40" width="40">
+        {% endif %}
+    </div>
 
-    <form method="post">
+    <form method="post" enctype="multipart/form-data">
+    {% load crispy_forms_tags %}
         {% csrf_token %}
-        {{ form.as_p }}
+        {{ form|crispy }}
         <button type="submit">Send</button>
     </form>
 {% endblock main_content %}
