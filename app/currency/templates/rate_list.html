@@ -4,9 +4,18 @@
     <div>
         <a class="btn btn-primary"
            href="{% url 'currency:rate_create' %}"
+
            class="btn btn-primary active"
-        role="button"> Create new rate </a>
+           role="button"> Create new rate </a>
     </div>
+
+    <form method="get">
+        {{ filter.form.as_p }}
+        <label for="id-page_size">Items per page</label>
+        <input name="page_size" id="id-page_size" value="{{ page_size }}" placeholder="3..100" type="number">
+    <button type="submit">Filter</button>
+    </form>
+    <br>
 
     <div class="container mt-3">
         <h2>Rate List</h2>
@@ -24,25 +33,28 @@
             </thead>
             <tbody>
             {% for rate in rate_list %}
-            <tr>
-                <td>{{ rate.id }}</td>
-                <td>{{ rate.sale }}</td>
-                <td>{{ rate.buy }}</td>
-                <td>{{ rate.get_base_currency_type_display }}</td>
-                <td>{{ rate.get_currency_type_display }}</td>
-                <td>{{ rate.source.name }}
-                    {% if rate.source.bank_avatar.url %}
-                        <img src="{{ rate.source.bank_avatar.url }}" height="40" width="40">
-                    {% endif %}
-                </td>
-                <td>
-                    <a href="{% url 'currency:rate_details' rate.id %}"> View details </a>
-                    <a href="{% url 'currency:rate_update' rate.id %}"> Edit </a>
-                    <a href="{% url 'currency:rate_delete' rate.id %}"> Delete </a>
-                </td>
-            </tr>
+                <tr>
+                    <td>{{ rate.id }}</td>
+                    <td>{{ rate.sale }}</td>
+                    <td>{{ rate.buy }}</td>
+                    <td>{{ rate.get_base_currency_type_display }}</td>
+                    <td>{{ rate.get_currency_type_display }}</td>
+                    <td>{{ rate.source.name }}
+                        {% if rate.source.bank_avatar.url %}
+                            <img src="{{ rate.source.bank_avatar.url }}" height="40" width="40">
+                        {% endif %}
+                    </td>
+                    <td>
+                        <a href="{% url 'currency:rate_details' rate.id %}"> View details </a>
+                        <a href="{% url 'currency:rate_update' rate.id %}"> Edit </a>
+                        <a href="{% url 'currency:rate_delete' rate.id %}"> Delete </a>
+                    </td>
+                </tr>
             {% endfor %}
             </tbody>
         </table>
     </div>
+
+    {% include 'parts/pagination.html' %}
+
 {% endblock main_content %}
