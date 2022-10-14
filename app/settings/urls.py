@@ -13,7 +13,7 @@ urlpatterns = [
     path('currency/', include('currency.urls')),
     path('accounts/', include('accounts.urls')),
     path('auth/', include('django.contrib.auth.urls')),
-    path('api/', include('api.urls'))
+    path('api/v1/', include('api.v1.urls'))
 
 ]
 
