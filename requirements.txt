@@ -4,6 +4,8 @@ ipython
 django_admin_rangefilter
 celery~=5.2.7
 django-filter
+djangorestframework
+drf-excel
 
 
 # dev
