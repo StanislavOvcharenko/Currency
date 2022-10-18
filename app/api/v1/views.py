@@ -52,7 +52,8 @@ class ContactUsList(generics.ListAPIView):
     filterset_class = ContactUsFilter
     filter_backends = (filters.DjangoFilterBackend,
                        rest_framework_filters.OrderingFilter,
-                       rest_framework_filters.SearchFilter)
+                       rest_framework_filters.SearchFilter
+                       )
     ordering_fields = ['email_to', 'subject', 'message']
     search_fields = ['email_to', 'subject', 'message']
 

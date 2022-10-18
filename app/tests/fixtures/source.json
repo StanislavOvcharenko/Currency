@@ -1,0 +1,47 @@
+[
+  {
+    "model": "currency.source",
+    "pk": 3,
+    "fields": {
+      "source_url": "https://www.monobank.ua/",
+      "name": "Monobank",
+      "bank_avatar": "source_avatar/3/download_n5TRGIK.jpeg"
+    }
+  },
+  {
+    "model": "currency.source",
+    "pk": 4,
+    "fields": {
+      "source_url": "https://privatbank.ua/",
+      "name": "Privatbank",
+      "bank_avatar": "source_avatar/4/privatbank-r0-square_medium.jpg"
+    }
+  },
+  {
+    "model": "currency.source",
+    "pk": 5,
+    "fields": {
+      "source_url": "https://www.vkurse.dp.ua/",
+      "name": "Vkurse",
+      "bank_avatar": "source_avatar/5/Big_Gerb_fin.png"
+    }
+  },
+  {
+    "model": "currency.source",
+    "pk": 6,
+    "fields": {
+      "source_url": "https://bank.gov.ua/",
+      "name": "Nacbank",
+      "bank_avatar": "source_avatar/6/Flag_of_Ukraine.svg.webp"
+    }
+  },
+  {
+    "model": "currency.source",
+    "pk": 7,
+    "fields": {
+      "source_url": "https://apilayer.com/marketplace/currency_data-api",
+      "name": "Apilayer",
+      "bank_avatar": "source_avatar/7/logo.png"
+    }
+  }
+]
