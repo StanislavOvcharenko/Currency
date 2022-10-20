@@ -22,3 +22,5 @@ flake8-print==5.0.0
 #tests
 pytest
 pytest-django
+pytest-cov
+pytest-mock
