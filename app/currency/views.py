@@ -1,6 +1,9 @@
 # from django.shortcuts import render
 from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core.cache import cache
+from django.utils.decorators import method_decorator
+from django.views.decorators.cache import cache_page
 
 from currency.filters import RateFilter
 from currency.models import ContactUs, Rate, Source
@@ -12,11 +15,22 @@ from django_filters.views import FilterView
 from currency.tasks import send_contactus_mail
 
 
+@method_decorator(cache_page(10), name='dispatch')
 class IndexView(generic.TemplateView):
     template_name = 'index.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+
+        # cache_key = 'IndexPage'
+        # rate_count = cache.get(cache_key)
+        # if rate_count:
+        #     context['rate_count'] = rate_count
+        # else:
+        #     rate_count = Rate.objects.count()
+        #     cache.set(cache_key, rate_count, 60 * 10)
+        #     context['rate_count'] = rate_count
+
         context['rate_count'] = Rate.objects.count()
         context['source_count'] = Source.objects.count()
         return context
@@ -41,7 +55,7 @@ class ContactUsCreateView(generic.CreateView):
         return response
 
 
-class RateListView(LoginRequiredMixin, FilterView):
+class RateListView(FilterView):  #LoginRequiredMixin
     queryset = Rate.objects.all().select_related('source')
     template_name = 'rate_list.html'
     paginate_by = 10

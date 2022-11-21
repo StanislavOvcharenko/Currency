@@ -43,7 +43,7 @@ def parsing_privat():
     source_name = 'Privatbank'
     bank_url = 'https://privatbank.ua/ '
 
-    source = Source.objects.get_or_create(name=source_name, defaults={'url': bank_url})[0]
+    source = Source.objects.get_or_create(name=source_name, defaults={'source_url': bank_url})[0]
 
     for rate in response_data:
         base_currency_type = rate['base_ccy']

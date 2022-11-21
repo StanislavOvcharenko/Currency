@@ -1,0 +1,44 @@
+version: "3"
+
+services:
+
+  backend:
+    image: local:0.0.1
+    build: .
+    container_name: backend
+    ports:
+      - "8000:8000"
+
+  memcached:
+    image: memcached:1.6.17
+    container_name: memcached
+    ports:
+      - "11211:11211"
+
+  rabbitmq:
+    image: rabbitmq:3.11.2-management
+    container_name: rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+
+  postgres:
+    image: postgres:15.0-alpine
+    container_name: postgres
+    ports:
+      - "5432:5432"
+    environment:
+        POSTGRES_PASSWORD: exampleCurrency
+        POSTGRES_USER: currency
+        POSTGRES_DB: currency-db
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    ports:
+      - "80:80"
+
+volumes:
+  db_data: {}
