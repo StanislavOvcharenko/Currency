@@ -1,6 +1,6 @@
 from django.urls import path
 # from currency.views import contact_us_list
-from currency import views
+from app.currency import views
 
 app_name = 'currency'
 

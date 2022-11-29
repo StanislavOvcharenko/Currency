@@ -9,7 +9,7 @@ from django.views import generic
 from django.urls import reverse_lazy
 from django_filters.views import FilterView
 
-from currency.tasks import send_contactus_mail
+from app.currency.tasks import send_contactus_mail
 
 
 class IndexView(generic.TemplateView):
